@@ -4,9 +4,12 @@ schema=${schema:-default}
 catalog=${catalog:-$(sed 's/-/_/' <<<$workspace_name)}
 create-managed() {
     local volume=$1
-    databricks volumes create $catalog $schema $volume MANAGED
-
+    # create if not exists
+    if ! databricks volumes read $catalog.$schema.$volume > /dev/null; then
+        databricks volumes create $catalog $schema $volume MANAGED
+    fi
     databricks grants update volume $catalog.$schema.$volume --json '{"changes": [{"principal": "account users", "add": ["READ_VOLUME"]}]}'
+
 }
 
 volumes() {
