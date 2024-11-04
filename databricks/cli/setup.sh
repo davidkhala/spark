@@ -7,8 +7,5 @@ login() {
 
   databricks configure --token --host https://$url <<<$pat
 }
-whoami() {
-  databricks current-user me
-}
 
 $@
