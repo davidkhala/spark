@@ -13,7 +13,9 @@ whoami() {
     databricks current-user me
 }
 create-service-principal() {
-    databricks service-principals create $@ | jq '{applicationId,id}'
+    local name=$1
+    shift 1
+    databricks service-principals create --active --display-name $name $@ | jq '{applicationId,id}'
 }
 list-service-principal() {
     databricks service-principals list -o json
