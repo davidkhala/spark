@@ -16,6 +16,9 @@ A task can be
 用户可以在Notebook中编写Python命令，编辑命令，并执行命令，获得输出的结果，并可以对结果进行可视化处理，
 - 类似Jupiter Notebook
 
+Give the notebook id (presented as 'object_id' or 'resource_id' in a value format of `3674839001807684`), there is no way to query back the notebook path
+- This uglifies notebook visualization in MS Purview lineage canvas
+
 ### Public examples
 - https://docs.databricks.com/en/_extras/notebooks/source/mlflow/mlflow-quick-start-python.html
 - https://analyticjeremy.github.io/Databricks_Examples/
