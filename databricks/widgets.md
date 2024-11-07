@@ -10,3 +10,4 @@ Select **Edit > Add widget**
 ## [Widgets API](https://docs.databricks.com/en/dev-tools/databricks-utils.html)
 `dbutils.widgets.help()`
 - Used in notebook attached to cluster
+- Further advanced control, use https://docs.databricks.com/en/notebooks/ipywidgets.html
