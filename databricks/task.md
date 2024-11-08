@@ -20,6 +20,9 @@ Give the notebook id (presented as `object_id` or `resource_id` in a value forma
 - This uglifies notebook visualization in Microsoft Purview lineage canvas
 - You might need to create a dimentional table for query that information
 
+### SQL in Notebook
+- There is no data function to get current workspace id
+
 ### Public examples
 - https://docs.databricks.com/en/_extras/notebooks/source/mlflow/mlflow-quick-start-python.html
 - https://analyticjeremy.github.io/Databricks_Examples/
