@@ -4,3 +4,4 @@
 
 ## Spark SQL DataFrame
 [API](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html)
+- DataFrame is not a table/view, so it is anonymous
