@@ -10,6 +10,8 @@ Delta live tables
   - The same job will resuse compute used in previous run if there is no setting change.
   - These type of Job Compute is managed by Databricks
     - > Error: dlt prefixed spark images cannot be used outside of the Delta Live Tables service
+    - You cannot edit it
+    - You cannot pause it. Once paused, new run will not resume it. Instead, it will create another Job Compute. 
   - To save compute cost, configure 
     - In Compute section
       - `Cluster mode` = `Fixed size`, 
