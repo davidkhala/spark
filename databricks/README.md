@@ -8,6 +8,8 @@ Delta live tables
   - You cannot attach it to your existing compute
   - New Job Compute with massive cost will be created for it.
   - The same job will resuse compute used in previous run if there is no setting change.
+  - These type of Job Compute is managed by Databricks
+    - > Error: dlt prefixed spark images cannot be used outside of the Delta Live Tables service
   - To save compute cost, configure 
     - In Compute section
       - `Cluster mode` = `Fixed size`, 
