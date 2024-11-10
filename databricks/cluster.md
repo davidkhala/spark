@@ -1,8 +1,10 @@
 
 # Runtime
-Runtime for Machine Learning
+
+
+## Runtime for Machine Learning
 - based on standard runtime
-- contains many popular machine learning libraries: TensorFlow, PyTorch, and XGBoost
+- contains machine learning libraries: TensorFlow, PyTorch, and XGBoost
 - contains Databricks AutoML
 - supports distributed deep learning training using Horovod.
 
@@ -36,3 +38,4 @@ Default policies (prebuilt)
 
 
 # Job Compute
+- for running DLT

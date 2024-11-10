@@ -1,8 +1,7 @@
 [Table types](https://docs.databricks.com/en/tables/index.html#differences-between-delta-tables-streaming-tables-and-materialized-views)
 
 # Delta table
-- Standard tables
-- Stored in the Delta Lake format
+- default table format
 
 ## Streaming table
 > Does not support the "update" output mode for streaming queries. 
