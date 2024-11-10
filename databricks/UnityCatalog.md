@@ -1,5 +1,9 @@
 # Unity Catalog
-> Unity Catalog is not available for feature tier STANDARD_TIER.
+> Unity Catalog is not available for feature tier STANDARD_TIER
+- [Open source on Github](https://github.com/unitycatalog/unitycatalog)
+    - Maturiy: Sandbox
+    - Governance: LF AI & Data
+
 ## Metastores
 A metastore is the top-level container for catalog in Unity Catalog. Within a metastore, Unity Catalog provides a 3-level namespace for organizing data: [catalogs](./DBO.md#catelog) > [schemas](./DBO.md#schema) > tables / views.
 

@@ -1,6 +1,4 @@
 
-
-
 # Import another notebook
 [Run a Databricks notebook from another notebook](https://docs.databricks.com/en/notebooks/notebook-workflows.html)
 
