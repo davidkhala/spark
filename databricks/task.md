@@ -21,6 +21,7 @@ Give the notebook id (presented as `object_id` or `resource_id` in a value forma
 - You might need to create a dimentional table for query that information
 
 ### SQL in Notebook
+aka. Spark SQL
 - There is no data function to get current workspace id
 
 ### Public examples
