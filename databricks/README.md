@@ -1,6 +1,6 @@
 [DataGrip integration](https://github.com/davidkhala/code-dev-collection/blob/main/jetbrain/dataGrip/databricks.md)
 
-
+[`databricks` cli](https://github.com/davidkhala/databricks-common/tree/main/cli)
 
 - [Samples](./samples.md)
 

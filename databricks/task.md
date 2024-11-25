@@ -20,7 +20,7 @@ A task can be
 Give the notebook id (presented as `object_id` or `resource_id` in a value format of `3674839001807684`), there is no way to query back the notebook path
 - This uglifies notebook visualization in Microsoft Purview lineage canvas
 - You might need to create a dimentional table for query that information
-- [example](https://github.com/davidkhala/databricks-common/blob/main/lib/workspace.py): function `index_notebooks`
+- [example](https://github.com/davidkhala/databricks-common/blob/main/workspace/path.py): function `getBy`
 
 ### SQL in Notebook
 aka. Spark SQL
