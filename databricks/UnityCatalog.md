@@ -7,9 +7,7 @@
 ## Metastores
 A metastore is the top-level container for catalog in Unity Catalog. Within a metastore, Unity Catalog provides a 3-level namespace for organizing data: [catalogs](./DBO.md#catelog) > [schemas](./DBO.md#schema) > tables / views.
 
-By default, the **Metastore Admin** is a pseudo **System user**
+By default, the **Metastore Admin** is undefined (shown as **System user**)
 - It is not related to any workspace principal/identity
-- It is not managed in workspace console. It is managed in **Account Console**
-    - [Azure](https://github.com/davidkhala/azure-utils/blob/main/data/bricks/README.md)
-
-
+- It is not managed in workspace console. It is managed in **Account Console** > **Catalog**
+    - [Azure](https://accounts.azuredatabricks.net/data)
