@@ -1,17 +1,3 @@
-
-# Runtime
-
-
-## Runtime for Machine Learning
-- based on standard runtime
-- contains machine learning libraries: TensorFlow, PyTorch, and XGBoost
-- contains Databricks AutoML
-- supports distributed deep learning training using Horovod.
-
-# Local SSDs
-https://community.databricks.com/t5/data-engineering/what-is-the-local-ssd-used-for-in-databricks/m-p/53575/highlight/true#M29823
-> In summary, local SSDs play a crucial role in improving performance by caching data and storing temporary files.
-
 # Compute Policy
 - Requires Premium plan
 
@@ -35,7 +21,3 @@ Default policies (prebuilt)
 ## Power User Compute
 - Similar to **Shared Compute** policy
 - Defaults to the latest Databricks **Runtime ML** version (newer than latest LTS)
-
-
-# Job Compute
-- for running DLT
