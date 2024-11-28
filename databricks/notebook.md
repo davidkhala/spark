@@ -3,10 +3,11 @@
 - 类似[Jupiter Notebook](https://github.com/davidkhala/AI/wiki/Jupyter-Notebook)
 - 默认语言为Python，并支持Scala，R，[SQL](#sql-in-notebook)
 
-Give the notebook id (presented as `object_id` or `resource_id` in a value format of `3674839001807684`), there is no way to query back the notebook path
+Give the notebook id (presented as `object_id` or `resource_id` in a value format of `3674839001807684`), there is no table/view to query the notebook path
 - This uglifies notebook visualization in Microsoft Purview lineage canvas
-- You might need to create a dimentional table for query that information
-- [example](https://github.com/davidkhala/databricks-common/blob/main/workspace/path.py)
+- Solution [example](https://github.com/davidkhala/databricks-common/blob/main/workspace/path.py)
+  - You might need to create a *Global Temp View* or table (for serverless compute) for SQL query, or
+  - **Recommend** You can get it by sdk
 
 ## SQL in Notebook
 aka. Spark SQL
