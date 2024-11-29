@@ -11,9 +11,10 @@
 ## [Type](https://docs.databricks.com/en/catalogs/index.html#catalog-types)
 
 - **Workspace catalog**: default catalog in all new workspaces.
-  - ?Auto provision requires Unity Catalog enabled before workspace provision
+  - Auto provision requires Unity Catalog enabled before workspace provision
   - Access: All users in your workspace have access to it
   - Recommended place for users to manage data objects
+  - ?aws is an exception
 
 ## Metastores
 
