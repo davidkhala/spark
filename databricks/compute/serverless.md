@@ -1,4 +1,6 @@
 # Serverless compute
+runtime
+- Python 3.10.12
 
 
 ## Serverless client images
