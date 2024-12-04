@@ -1,5 +1,5 @@
 # PySpark
-- > a Spark-specific variant of Python
+- > [Microsoft](https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/2-spark): a Spark-specific variant of Python
 - > Python API for Apache Spark
 
 
