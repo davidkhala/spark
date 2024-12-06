@@ -9,7 +9,7 @@ packages = [{ include = "common" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pyspark = {extras = ["sql"], version = "*"}
+pyspark = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"

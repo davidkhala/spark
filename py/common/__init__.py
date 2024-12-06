@@ -7,8 +7,4 @@ class Regular:
 
     @staticmethod
     def sparkSession():
-        return SparkSession \
-            .builder \
-            .appName("Python Spark SQL basic example") \
-            .config("spark.some.config.option", "some-value") \
-            .getOrCreate()
+        return SparkSession.builder.getOrCreate()
