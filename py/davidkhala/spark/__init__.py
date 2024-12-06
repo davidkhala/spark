@@ -6,7 +6,7 @@ class Regular:
     """
 
     @staticmethod
-    def sparkSession():
+    def session():
         return SparkSession.builder.getOrCreate()
 
 

@@ -4,8 +4,8 @@ import unittest
 
 class CommonTestCase(unittest.TestCase):
     def test_import(self):
-        common = importlib.import_module('common')
-        from common import Regular
+        common = importlib.import_module('davidkhala.spark')
+        from davidkhala.spark import Regular
         self.assertTrue(isinstance(common.Regular(), Regular))
 
 
