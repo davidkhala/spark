@@ -8,11 +8,15 @@ readme = "README.md"
 packages = [{ include = "common" }]
 
 [tool.poetry.dependencies]
-python = "^3.12"
-pyspark = "*"
+python = "^3.10"
+#
+pyspark = { version = "*", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
+
+[tool.poetry.extras]
+core = ["pyspark"]
 
 [build-system]
 requires = ["poetry-core"]
