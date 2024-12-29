@@ -5,8 +5,24 @@
 ## Spark DataFrame
 [wiki](https://github.com/davidkhala/spark/wiki/data-structure)
 
-
 - DataFrame is not a table/view, so it is anonymous
+### Partitioning the output file
+When `bikes_df.write.partitionBy("Category").parquet("Files/bike_data")`, it generates folder structure like
+```
+/bike_data
+- /Category=Mountain Bikes
+  - ?.parquet
+  - ?.parquet
+- /Category=Road Bikes
+  - ?.parquet
+  - ?.parquet
+```
+> [You can partition the data by multiple columns, which results in a hierarchy of folders for each partitioning key](https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/4-dataframe)
+
+When `road_bikes_df = spark.read.parquet('Files/bike_data/Category=Road Bikes')`
+- **omitted**: The results dataframe produced would **not** include a **Category** column
+
+
 ### Temp View
 [TempView](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.createTempView.html)
 - Scoped to SparkSession. Live in a notebook run 
