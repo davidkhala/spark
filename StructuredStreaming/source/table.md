@@ -1,0 +1,2 @@
+> When using a Delta table as a streaming source, only `append` operations can be included in the stream.
+> Data modifications will cause an error unless you specify the `ignoreChanges` or `ignoreDeletes` option.
