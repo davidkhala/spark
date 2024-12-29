@@ -2,8 +2,10 @@
 - the most useful feature of Spark SQL & DataFrame 
 - the most expensive operations: use them only you have no choice and when essential
 
-## Spark SQL DataFrame
-[API](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html)
+## Spark DataFrame
+[wiki](https://github.com/davidkhala/spark/wiki/data-structure)
+
+
 - DataFrame is not a table/view, so it is anonymous
 ### Temp View
 [TempView](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.createTempView.html)
