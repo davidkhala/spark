@@ -1,11 +1,11 @@
 import unittest
 
-from davidkhala.spark.source.pubsub import GCPAuthOptions
+from davidkhala.spark.gcp import AuthOptions
 
 
 class PubsubTestCase(unittest.TestCase):
     def test_auth(self):
-        auth = GCPAuthOptions(clientId='', clientEmail= None, privateKeyId=None, privateKey='')
+        auth = AuthOptions(clientId='', clientEmail= None, privateKeyId=None, privateKey='')
         print(auth.to_dict())
 
 
