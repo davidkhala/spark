@@ -1,19 +1,20 @@
-from _typeshed import DataclassInstance
-from dataclasses import dataclass, asdict
-
-from davidkhala.spark import SessionDecorator
+from davidkhala.gcp.auth.options import ServiceAccountInfo
+from typing import TypedDict
 
 
-@dataclass
-class AuthOptions(DataclassInstance):
-    # TODO migrate to https://github.com/davidkhala/gcp-collections
+class AuthOptions(TypedDict):
     clientId: str
     clientEmail: str
     privateKey: str
     privateKeyId: str
-
-    def to_dict(self):
-        return asdict(self)
-
-class Session(SessionDecorator):
     projectId: str
+
+
+def from_service_account(info: ServiceAccountInfo) -> AuthOptions:
+    return AuthOptions(
+        clientId=info.get('client_id'),
+        clientEmail=info.get('client_email'),
+        privateKey=info.get('private_key'),
+        privateKeyId=info.get('private_key_id'),
+        projectId=info.get('project_id'),
+    )

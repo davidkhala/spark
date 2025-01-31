@@ -5,16 +5,14 @@ from davidkhala.spark.gcp import AuthOptions
 
 class PubSub:
     auth: AuthOptions
-    projectId: str
     spark: SparkSession
 
-    def start(self, topicId, subscriptionId) -> DataFrame:
+    def start(self, topic_id, subscription_id) -> DataFrame:
         # Set up the streaming DataFrame to listen to the Pub/Sub topic
         pubsub_df = (self.spark.readStream
-                     .option("subscriptionId", subscriptionId)
-                     .option("topicId", topicId)
-                     .option("projectId", self.projectId)
-                     .options(**self.auth.to_dict())
+                     .option("subscriptionId", subscription_id)
+                     .option("topicId", topic_id)
+                     .options(**self.auth)
                      .load(format="pubsub"))
         assert pubsub_df.isStreaming == True
         return pubsub_df
