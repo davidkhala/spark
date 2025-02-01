@@ -1,9 +1,8 @@
 name: pyspark
 on: push
 jobs:
-  gcp:
+  core:
     runs-on: ubuntu-latest
-    environment: gcp
     steps:
       - uses: actions/checkout@main
       - uses: davidkhala/poetry-buildpack@main
@@ -11,9 +10,3 @@ jobs:
           tests: py/tests
           test-entry-point: pytest
           working-directory: py
-        env:
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          CLIENT_EMAIL : ${{ vars.CLIENT_EMAIL }}
-          CLIENT_ID: ${{ vars.CLIENT_ID }}
-          PRIVATE_KEY_ID: ${{ vars.PRIVATE_KEY_ID }}
-          PROJECT_ID: ${{ vars.PROJECT_ID }}

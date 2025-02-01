@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "davidkhala.spark"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 authors = ["David Liu <david-khala@hotmail.com>"]
 license = "MIT"
@@ -11,13 +11,11 @@ packages = [{ include = "davidkhala" }]
 python = "^3.12"
 # extras
 pyspark = { version = "*", optional = true }
-davidkhala-gcp = { version = "*", optional = true}
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
 
 [tool.poetry.extras]
 apache = ["pyspark"]
-gcp = ['davidkhala-gcp']
 
 [build-system]
 requires = ["poetry-core"]

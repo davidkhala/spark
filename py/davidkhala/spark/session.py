@@ -2,7 +2,7 @@ from pyspark import SparkConf
 from pyspark.errors import IllegalArgumentException
 from pyspark.sql import SparkSession
 
-class Wrapper:
+class Wrapper(SparkSession):
     spark: SparkSession
 
     def __init__(self, spark):
@@ -21,7 +21,7 @@ class Wrapper:
     def __getattr__(self, name):
         # Delegate unknown attributes/methods to the wrapped instance
         return getattr(self.spark, name)
-class Regular(Wrapper, SparkSession):
+class ServerMore(Wrapper):
     @property
     def appName(self):
         try:
@@ -31,11 +31,15 @@ class Regular(Wrapper, SparkSession):
                 return
             else:
                 raise e
-def regular(*, name: str = None, conf: SparkConf = SparkConf())->Regular:
+    @property
+    def clusterId(self):
+        """almost abstract method"""
+        ...
+def regular(*, name: str = None, conf: SparkConf = SparkConf())->SparkSession:
     """
     Visit https://spark.apache.org/docs/latest/sql-getting-started.html#starting-point-sparksession for creating regular Spark Session
     """
     _ = SparkSession.builder.config(conf=conf)
     if name: _.appName(name)
 
-    return Regular(_.getOrCreate())
+    return _.getOrCreate()
