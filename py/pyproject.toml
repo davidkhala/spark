@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "davidkhala.spark"
-version = "0.0.2"
+version = "0.0.3"
 description = ""
 authors = ["David Liu <david-khala@hotmail.com>"]
 license = "MIT"

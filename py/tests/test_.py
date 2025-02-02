@@ -12,6 +12,7 @@ class PropertiesTestCase(unittest.TestCase):
         session = regular()
         wrapped = ServerMore(session)
         self.assertEqual("pyspark-shell", wrapped.appName)
+
     def test_context(self):
         sc = getOrCreate()
         self.assertLess(sc.startTime, datetime.now())
@@ -19,6 +20,16 @@ class PropertiesTestCase(unittest.TestCase):
         print(sc.defaultParallelism)
         self.assertEqual(2, sc.defaultMinPartitions)
         print(sc.appTime)
+
+
+class StreamTestCase(unittest.TestCase):
+    def test_sample(self):
+        from davidkhala.spark.source.stream import sample
+        session = regular()
+        df = sample(session)
+        df.printSchema()
+
+
 
 if __name__ == '__main__':
     unittest.main()

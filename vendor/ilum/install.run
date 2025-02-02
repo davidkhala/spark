@@ -1,0 +1,3 @@
+helm repo add ilum https://charts.ilum.cloud
+# you need a k8s cluster on 8080
+helm install ilum ilum/ilum
