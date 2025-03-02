@@ -1,12 +1,14 @@
 from pyspark import SparkConf
 from pyspark.errors import IllegalArgumentException
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession as JavaSparkSession
+
+from davidkhala.spark import SparkSession
 
 
-class Wrapper(SparkSession):
+class Wrapper:
     spark: SparkSession
 
-    def __init__(self, spark: SparkSession):
+    def __init__(self, spark):
         self.spark = spark
 
     def disconnect(self):
@@ -41,11 +43,11 @@ class ServerMore(Wrapper):
         ...
 
 
-def regular(*, name: str = None, conf: SparkConf = SparkConf()) -> SparkSession:
+def regular(*, name: str = None, conf: SparkConf = SparkConf()) -> JavaSparkSession:
     """
     Visit https://spark.apache.org/docs/latest/sql-getting-started.html#starting-point-sparksession for creating regular Spark Session
     """
-    _ = SparkSession.builder.config(conf=conf)
+    _ = JavaSparkSession.builder.config(conf=conf)
     if name: _.appName(name)
 
     return _.getOrCreate()
