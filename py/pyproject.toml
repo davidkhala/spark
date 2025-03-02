@@ -10,10 +10,10 @@ packages = [{ include = "davidkhala" }]
 [tool.poetry.dependencies]
 python = "^3.12"
 # extras
-pyspark = { version = "*", optional = true }
+pyspark = { version = "*", optional = true, extras = ["connect"]}
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
-
+setuptools = "*" # for ModuleNotFoundError: No module named 'distutils'
 [tool.poetry.extras]
 apache = ["pyspark"]
 
