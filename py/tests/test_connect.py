@@ -4,6 +4,10 @@ import unittest
 from pyspark.sql.connect.session import SparkSession
 
 from davidkhala.spark.connect import Databricks
+from davidkhala.spark.sink.stream import show
+from davidkhala.spark.source.stream import sample
+
+
 
 
 class LocalTestCase(unittest.TestCase):
@@ -20,17 +24,29 @@ class LocalTestCase(unittest.TestCase):
         session.stop()
 
 
+def sample_stream_display(spark, density):
+    df = sample(spark, density)
+    query = show(df)
+    query.awaitTermination()
+
+
 class DatabricksTestCase(unittest.TestCase):
-    def test_cluster(self):
+    def setUp(self):
         cluster_id = "1216-151225-fxmvxmxo"
         token = os.environ['PAT']
         workspace_instance_name = os.environ['WORKSPACE']
-        session = Databricks(workspace_instance_name, token, cluster_id)
+        self.spark = Databricks(workspace_instance_name, token, cluster_id)
 
-        df = session.sql('select 1')
+    def test_cluster(self):
+        df = self.spark.sql('select 1')
         df.show()
-        self.assertEqual('Databricks Shell', session.conf.get("spark.app.name"))
-        session.stop()
+        self.assertEqual('Databricks Shell', self.spark.appName)
+
+    def test_sample(self):
+        sample_stream_display(self.spark, 1)
+
+    def tearDown(self):
+        self.spark.stop()
 
 
 if __name__ == '__main__':

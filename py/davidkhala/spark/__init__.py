@@ -29,3 +29,6 @@ class SparkSession(Protocol):
     @property
     def conf(self) -> RuntimeConf:
         ...
+    @property
+    def readStream(self) -> "DataStreamReader":
+        ...
