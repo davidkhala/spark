@@ -8,12 +8,15 @@ readme = "README.md"
 packages = [{ include = "davidkhala" }]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.12, <3.14"
 # extras
-pyspark = { version = "*", optional = true, extras = ["connect"]}
+pyspark = { version = "*", optional = true, extras = ["connect"] }
+
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
 setuptools = "*" # for ModuleNotFoundError: No module named 'distutils'
+davidkhala-devops = { version = "*", extras = ["new-relic"] }
+davidkhala-databricks = "*"
 [tool.poetry.extras]
 apache = ["pyspark"]
 
