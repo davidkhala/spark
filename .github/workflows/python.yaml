@@ -2,6 +2,7 @@ name: pyspark
 on: push
 jobs:
   core:
+    environment: databricks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -10,3 +11,8 @@ jobs:
           tests: py/tests
           test-entry-point: pytest
           working-directory: py
+        env:
+          NEW_RELIC_LICENSE_KEY: ${{secrets.NEW_RELIC_LICENSE_KEY}}
+          PAT: ${{secrets.PAT}}
+          CLUSTER_ID: ${{vars.CLUSTER_ID}}
+          WORKSPACE: ${{vars.WORKSPACE}}

@@ -1,5 +1,6 @@
-from pyspark import SparkContext, SparkConf
 from datetime import datetime
+
+from pyspark import SparkContext, SparkConf
 
 
 class Wrapper(SparkContext):
@@ -30,6 +31,6 @@ class Wrapper(SparkContext):
         assert epoch_nano > self.sc.startTime
         return epoch_nano
 
-
-def getOrCreate(conf: SparkConf = SparkConf()) -> Wrapper:
-    return Wrapper(SparkContext.getOrCreate(conf))
+    @staticmethod
+    def from_config(conf: SparkConf = SparkConf()):
+        return Wrapper(SparkContext.getOrCreate(conf))

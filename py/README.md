@@ -1,6 +1,5 @@
-# PySpark
-- > [Microsoft](https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/2-spark): a Spark-specific variant of Python
-- > Python API for Apache Spark
+[PySpark](https://github.com/davidkhala/spark/wiki/pyspark)
+# davidkhala.spark
+- **Default to Spark Connect**: prefer `pyspark.sql.connect` than `pyspark.sql`. 
 
 
-# [Structured Streaming](https://spark.apache.org/docs/latest/api/python/index.html#index-page-structured-streaming) 

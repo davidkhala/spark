@@ -1,12 +1,12 @@
 from pyspark import SparkConf
 from pyspark.errors import IllegalArgumentException
 from pyspark.sql import SparkSession as JavaSparkSession
+from pyspark.sql.connect.session import SparkSession
 
-from davidkhala.spark import SparkSession
 
 
 class Wrapper:
-    spark: SparkSession
+    spark: SparkSession | JavaSparkSession
 
     def __init__(self, spark):
         self.spark = spark
@@ -51,3 +51,21 @@ def regular(*, name: str = None, conf: SparkConf = SparkConf()) -> JavaSparkSess
     if name: _.appName(name)
 
     return _.getOrCreate()
+
+
+class Databricks(ServerMore):
+    spark: SparkSession
+    cluster_id: str
+
+    def __init__(self, workspace_instance_name: str, token: str, cluster_id: str):
+        from getpass import getuser
+        user_id = getuser()  # can be any
+        connection_string = f"sc://{workspace_instance_name}:443/;token={token};x-databricks-cluster-id={cluster_id};user_id={user_id}"
+        session = SparkSession.builder.remote(connection_string).getOrCreate()
+        super().__init__(session)
+        self.cluster_id = cluster_id
+        self.user_id = user_id
+
+    @property
+    def clusterId(self):
+        return self.cluster_id

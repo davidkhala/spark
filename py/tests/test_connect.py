@@ -5,9 +5,9 @@ from databricks.sdk import WorkspaceClient
 from davidkhala.databricks.workspace.server import Cluster
 from pyspark.sql.connect.session import SparkSession
 
-from davidkhala.spark.connect import Databricks
-from davidkhala.spark.session import ServerMore
+from davidkhala.spark.session import ServerMore, Databricks
 from davidkhala.spark.sink.stream import show
+from davidkhala.spark.sink.stream.vendor import NewRelic
 from davidkhala.spark.source.stream import sample
 
 
@@ -18,7 +18,7 @@ class LocalTestCase(unittest.TestCase):
         session.stop()
 
     def test_local_remote(self):
-        self.skipTest('WIp')
+        self.skipTest('WIP')
         session = (SparkSession.builder.remote("sc://localhost:7077").getOrCreate())
         session.stop()
 
@@ -26,12 +26,7 @@ class LocalTestCase(unittest.TestCase):
 def sample_stream_display(spark, density):
     df = sample(spark, density)
 
-    def on_batch(df, id: int):
-        from davidkhala.newrelic.log import Ingestion
-        i = Ingestion(...)
-        i.send(f"type={type(df)}, count={df.count()}, batch_id={id}")
-
-    query = show(df, on_batch)
+    query = show(df, NewRelic())
     query.awaitTermination()
 
 
@@ -40,12 +35,12 @@ class DatabricksTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cluster_id = os.environ.get('CLUSTER_ID') or "0314-031459-bpfyf6sg"
+        cluster_id = os.environ.get('CLUSTER_ID')
         token = os.environ.get('PAT')
-        workspace_instance_name = os.environ.get('WORKSPACE') or "adb-4397269257097472.12.azuredatabricks.net"
-        cls.spark = Databricks(workspace_instance_name, token, cluster_id)
-
+        workspace_instance_name = os.environ.get('WORKSPACE')
         Cluster(WorkspaceClient(host=workspace_instance_name, token=token, cluster_id=cluster_id)).start()
+
+        cls.spark = Databricks(workspace_instance_name, token, cluster_id)
 
     def test_cluster(self):
         df = self.spark.sql('select 1')
@@ -53,6 +48,8 @@ class DatabricksTestCase(unittest.TestCase):
         df.show()
 
     def test_sample(self):
+        if os.environ.get('CI') == 'true':
+            self.skipTest('run forever')
         sample_stream_display(self.spark, 1)
 
     @classmethod

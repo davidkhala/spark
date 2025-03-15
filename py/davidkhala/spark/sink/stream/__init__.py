@@ -1,25 +1,30 @@
 from abc import abstractmethod, ABC
-from typing import Callable
+from typing import Callable, Protocol
 
-from pyspark.sql import DataFrame
-from pyspark.sql.streaming import StreamingQuery
+from pyspark.sql.connect.dataframe import DataFrame
+from pyspark.sql.connect.streaming import StreamingQuery
 from pyspark.sql.types import Row
 
 
 class ForeachWriter(ABC):
-
     """
     object class used in DataStreamWriter.foreach(...)
     """
 
-    def open(self, partition_id: int, epoch_id: int) -> bool: ...
+    def open(self, partition_id: int, epoch_id: int) -> bool: pass
+
     @abstractmethod
     def process(self, row: Row) -> None: ...
 
-    def close(self, error: Exception) -> None: ...
+    def close(self, error: Exception | None) -> None: pass
 
-def show(df: DataFrame, on_batch: Callable[[DataFrame, int], None]):
+
+class ForeachBatchWriter(Protocol):
+    @property
+    def on_batch(self) -> Callable[[DataFrame, int], None]: ...
+
+
+def show(df: DataFrame, writer: ForeachBatchWriter) -> StreamingQuery:
     assert df.isStreaming
 
-    query: StreamingQuery = df.writeStream.foreachBatch(on_batch).start()
-    return query
+    return df.writeStream.foreachBatch(writer.on_batch).start()
