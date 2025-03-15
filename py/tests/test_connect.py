@@ -2,7 +2,8 @@ import os
 import unittest
 
 from databricks.sdk import WorkspaceClient
-from davidkhala.databricks.workspace.server import Cluster
+from databricks.sdk.service.compute import PythonPyPiLibrary
+from davidkhala.databricks.workspace.server import Library
 from pyspark.sql.connect.session import SparkSession
 
 from davidkhala.spark.session import ServerMore, Databricks
@@ -38,7 +39,8 @@ class DatabricksTestCase(unittest.TestCase):
         cluster_id = os.environ.get('CLUSTER_ID')
         token = os.environ.get('PAT')
         workspace_instance_name = os.environ.get('WORKSPACE')
-        Cluster(WorkspaceClient(host=workspace_instance_name, token=token, cluster_id=cluster_id)).start()
+        library = Library(WorkspaceClient(host=workspace_instance_name, token=token, cluster_id=cluster_id))
+        library.add(PythonPyPiLibrary(package='davidkhala-devops[new-relic]'))
 
         cls.spark = Databricks(workspace_instance_name, token, cluster_id)
 
