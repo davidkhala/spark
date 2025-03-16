@@ -2,7 +2,7 @@ import datetime
 import unittest
 from datetime import datetime
 
-from davidkhala.spark.context import getOrCreate
+from davidkhala.spark.context import Wrapper
 from davidkhala.spark.session import regular, ServerMore
 
 
@@ -14,7 +14,7 @@ class PropertiesTestCase(unittest.TestCase):
         self.assertEqual("pyspark-shell", wrapped.appName)
 
     def test_context(self):
-        sc = getOrCreate()
+        sc = Wrapper.from_config()
         self.assertLess(sc.startTime, datetime.now())
         self.assertEqual('local[*]', sc.master)
         print(sc.defaultParallelism)
