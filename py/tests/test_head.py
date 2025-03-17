@@ -16,9 +16,9 @@ class PropertiesTestCase(unittest.TestCase):
     def test_context(self):
         sc = Wrapper.from_config()
         self.assertLess(sc.startTime, datetime.now())
-        self.assertEqual('local[*]', sc.master)
+        self.assertEqual('local', sc.master)
         print(sc.defaultParallelism)
-        self.assertEqual(2, sc.defaultMinPartitions)
+        self.assertEqual(1, sc.defaultMinPartitions)
         print(sc.appTime)
 
 

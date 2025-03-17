@@ -4,7 +4,6 @@ from pyspark.sql import SparkSession as JavaSparkSession
 from pyspark.sql.connect.session import SparkSession
 
 
-
 class Wrapper:
     spark: SparkSession | JavaSparkSession
 
