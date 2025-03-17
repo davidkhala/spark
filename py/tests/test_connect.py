@@ -4,17 +4,18 @@ import unittest
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.compute import PythonPyPiLibrary
 from davidkhala.databricks.workspace.server import Library
+from pyspark.sql import SparkSession as RegularSparkSession
 from pyspark.sql.connect.session import SparkSession
 
 from davidkhala.spark.session import ServerMore, Databricks
-from davidkhala.spark.sink.stream import show
+from davidkhala.spark.sink.stream import startAny
 from davidkhala.spark.sink.stream.vendor import NewRelic
 from davidkhala.spark.source.stream import sample
 
 
 class LocalTestCase(unittest.TestCase):
     def test_local_master(self):
-        session = SparkSession.builder.master("local").getOrCreate()
+        session = RegularSparkSession.builder.master("local").getOrCreate()
         # java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset
         session.stop()
 
@@ -27,7 +28,7 @@ class LocalTestCase(unittest.TestCase):
 def sample_stream_display(spark, density):
     df = sample(spark, density)
 
-    query = show(df, NewRelic())
+    query = startAny(df, NewRelic())
     query.awaitTermination()
 
 

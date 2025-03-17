@@ -24,7 +24,7 @@ class ForeachBatchWriter(Protocol):
     def on_batch(self) -> Callable[[DataFrame, int], None]: ...
 
 
-def show(df: DataFrame, writer: ForeachBatchWriter) -> StreamingQuery:
+def startAny(df: DataFrame, writer: ForeachBatchWriter) -> StreamingQuery:
     assert df.isStreaming
 
     return df.writeStream.foreachBatch(writer.on_batch).start()

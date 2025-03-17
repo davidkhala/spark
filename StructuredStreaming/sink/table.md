@@ -1,9 +1,7 @@
 ```python
 
-df.writeStream.format("delta") \
-    .option("checkpointLocation", checkpointpath) \
-    .start(output_table_path)
-    
+df.writeStream.format("delta").option("checkpointLocation", checkpointpath).start(output_table_path)
+
 ```
 option `checkpointLocation` is required
 > The `checkpointLocation` option is used to write a checkpoint file that tracks the state of the stream processing.
