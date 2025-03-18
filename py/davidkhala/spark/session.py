@@ -11,7 +11,8 @@ class Wrapper:
         self.spark = spark
 
     def disconnect(self):
-        self.spark.stop()
+        if not self.spark.is_stopped:
+            self.spark.stop()
 
     @property
     def schema(self) -> str:
