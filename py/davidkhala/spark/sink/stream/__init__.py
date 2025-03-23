@@ -2,7 +2,6 @@ from abc import abstractmethod, ABC
 from typing import Callable, Protocol
 
 from pyspark.sql.connect.dataframe import DataFrame
-from pyspark.sql.connect.streaming import StreamingQuery
 from pyspark.sql.types import Row
 
 
@@ -22,9 +21,3 @@ class ForeachWriter(ABC):
 class ForeachBatchWriter(Protocol):
     @property
     def on_batch(self) -> Callable[[DataFrame, int], None]: ...
-
-
-def startAny(df: DataFrame, writer: ForeachBatchWriter) -> StreamingQuery:
-    assert df.isStreaming
-
-    return df.writeStream.foreachBatch(writer.on_batch).start()

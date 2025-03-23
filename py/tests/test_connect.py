@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession as RegularSparkSession
 from pyspark.sql.connect.session import SparkSession
 
 from davidkhala.spark.session import ServerMore, Databricks
-from davidkhala.spark.sink.stream import startAny
+from davidkhala.spark.connect.stream import startAny
 from davidkhala.spark.sink.stream.vendor import NewRelic
 from davidkhala.spark.source.stream import sample
 
@@ -41,7 +41,7 @@ class DatabricksTestCase(unittest.TestCase):
         token = os.environ.get('PAT')
         workspace_instance_name = os.environ.get('WORKSPACE')
         library = Library(WorkspaceClient(host=workspace_instance_name, token=token, cluster_id=cluster_id))
-        library.add(PythonPyPiLibrary(package='davidkhala-devops[new-relic]'))
+        library.add('davidkhala-devops[new-relic]')
 
         cls.spark = Databricks(workspace_instance_name, token, cluster_id)
 
