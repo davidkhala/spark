@@ -9,7 +9,12 @@ expose(){
     kubectl port-forward svc/ilum-ui 9777:9777 -n $namespace
 }
 open(){
-  echo "You can use default credentials admin:admin to log in."
+  
   xdg-open http://localhost:31777
 }
+with-SQL(){
+  helm upgrade ilum ilum/ilum --set ilum-sql.enabled=true
+  
+}
+
 "$@"
