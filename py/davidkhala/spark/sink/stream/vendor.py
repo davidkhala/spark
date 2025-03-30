@@ -1,5 +1,6 @@
 import os
 
+from pyspark import Row
 from pyspark.sql.connect.dataframe import DataFrame
 
 from davidkhala.spark.sink.stream import ForeachBatchWriter
@@ -21,6 +22,18 @@ class NewRelic(ForeachBatchWriter):
                 'batch_id': batch_id
             }
 
+            i.send(str(data))
+
+        return func
+
+    @property
+    def on_row(self):
+        s = self.license_key  # cloned string for spark serialize
+
+        def func(row: Row):
+            from davidkhala.newrelic.log import Ingestion
+            i = Ingestion(s)
+            data = row.asDict(),
             i.send(str(data))
 
         return func
