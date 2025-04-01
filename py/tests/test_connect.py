@@ -2,13 +2,12 @@ import os
 import unittest
 
 from databricks.sdk import WorkspaceClient
-from databricks.sdk.service.compute import PythonPyPiLibrary
 from davidkhala.databricks.workspace.server import Library
 from pyspark.sql import SparkSession as RegularSparkSession
 from pyspark.sql.connect.session import SparkSession
 
-from davidkhala.spark.session import ServerMore, Databricks
 from davidkhala.spark.connect.stream import startAny
+from davidkhala.spark.session import ServerMore, Databricks
 from davidkhala.spark.sink.stream.vendor import NewRelic
 from davidkhala.spark.source.stream import sample
 
