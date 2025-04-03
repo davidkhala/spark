@@ -1,12 +1,16 @@
-## User Defined Function (UDF)
+# User Defined Function (UDF)
 - the most useful feature of Spark SQL & DataFrame 
 - the most expensive operations: use them only you have no choice and when essential
 
-## Spark DataFrame
+# Syntax
+> Spark SQL 不能指定要将数据插入哪些列中。这种语句将引发错误
+> - `Insert into table_name (taxi_driver_id, first_name) values (3,'Ronda')`
+
+# Spark DataFrame
 [wiki](https://github.com/davidkhala/spark/wiki/data-structure)
 
 - DataFrame is not a table/view, so it is anonymous
-### Partitioning the output file
+## Partitioning the output file
 When `bikes_df.write.partitionBy("Category").parquet("Files/bike_data")`, it generates folder structure like
 ```
 /bike_data
@@ -23,7 +27,7 @@ When `road_bikes_df = spark.read.parquet('Files/bike_data/Category=Road Bikes')`
 - **omitted**: The results dataframe produced would **not** include a **Category** column
 
 
-### Temp View
+# Temp View
 [TempView](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.createTempView.html)
 - Scoped to SparkSession. Live in a notebook run 
 - common way of sharing data between language
