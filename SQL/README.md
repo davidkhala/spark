@@ -3,8 +3,10 @@
 - the most expensive operations: use them only you have no choice and when essential
 
 # Syntax
-> Spark SQL 不能指定要将数据插入哪些列中。这种语句将引发错误
-> - `Insert into table_name (taxi_driver_id, first_name) values (3,'Ronda')`
+Insert
+- 不能指定要将数据插入哪些列中。这种语句将引发错误`Insert into table_name (taxi_driver_id, first_name) values (3,'Ronda')`
+- `INSERT OVERWRITE TABLE ... SELECT ... FROM`可在插入数据的同时清理数据。这让你能够更轻松地重新加载数据
+- 
 
 # Spark DataFrame
 [wiki](https://github.com/davidkhala/spark/wiki/data-structure)
