@@ -16,7 +16,8 @@ setup-sql() {
 setup-metastore() {
   # Enable Table Explorer (Hive Metastore)
   # TODO To be fixed by official
-  update --set ilum-hive-metastore.enabled=true --set ilum-core.hiveMetastore.enabled=true --set ilum-sql.enabled=true --set ilum-core.sql.enabled=true
+  # sql module will be enabled by default
+  update --set ilum-hive-metastore.enabled=true --set ilum-core.hiveMetastore.enabled=true
 }
 setup-lineage() {
   update --set global.lineage.enabled=true --set ilum-marquez.web.enabled=true
