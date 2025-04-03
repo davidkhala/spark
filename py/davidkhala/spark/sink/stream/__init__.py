@@ -3,17 +3,8 @@ from typing import Callable, Protocol
 
 from pyspark.sql.connect.dataframe import DataFrame
 from pyspark.sql.connect.session import SparkSession
-from pyspark.sql.connect.streaming import DataStreamWriter
+
 from pyspark.sql.types import Row
-
-
-class Write:
-    def __init__(self, df: DataFrame):
-        assert df.isStreaming
-        self.stream: DataStreamWriter = df.writeStream
-    @property
-    def spark(self) -> SparkSession:
-        return self.stream._session
 
 
 class ForeachWriter(ABC):
