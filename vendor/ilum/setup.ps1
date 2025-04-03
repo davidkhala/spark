@@ -3,7 +3,7 @@ if ($env:namespace) {
 } else {
     $namespace = "ilum"
 }
-
+Write-Output "using namespace $namespace"
 function Register {
     # Register the repository
     helm repo add ilum https://charts.ilum.cloud
@@ -12,7 +12,7 @@ function Register {
 
 function Install {
     # You need a k8s cluster
-    helm install ilum ilum/ilum -n $namespace --create-namespace
+    helm install ilum ilum/ilum --wait -n $namespace --create-namespace
 }
 
 function Enable-Sql {
@@ -23,7 +23,7 @@ function Enable-Sql {
 function Enable-Metastore {
     # Enable Table Explorer (Hive Metastore)
     # TODO To be fixed by official
-    Update --set ilum-hive-metastore.enabled=true --set ilum-core.hiveMetastore.enabled=true --set ilum-sql.enabled=true --set ilum-core.sql.enabled=true
+    Update --set ilum-sql.enabled=true --set ilum-core.sql.enabled=true --set ilum-hive-metastore.enabled=true --set ilum-core.hiveMetastore.enabled=true 
 }
 
 function Enable-Lineage {
@@ -36,7 +36,7 @@ function Update {
     # Use splatting for passing arguments to helm upgrade
     $params = @{}
     
-    helm upgrade ilum ilum/ilum -n $namespace @params
+    helm upgrade ilum ilum/ilum -n $namespace --wait @params
 }
 
 function Expose {
@@ -50,9 +50,9 @@ function Open {
 
 function Uninstall {
     helm uninstall ilum --ignore-not-found --wait -n $namespace
+    kubectl delete pvc gitea-shared-storage
     # TODO Leakage To be fixed by official
-    kubectl delete service ilum-hive-metastore -n $namespace
-    kubectl delete pvc --all -n $namespace
+    kubectl delete namespace $namespace
 }
 
 
