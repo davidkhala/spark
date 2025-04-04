@@ -1,6 +1,7 @@
 if ($env:namespace) {
     $namespace = $env:namespace
-} else {
+}
+else {
     $namespace = "ilum"
 }
 Write-Output "using namespace $namespace"
@@ -54,7 +55,11 @@ function Uninstall {
     # kubectl delete pvc gitea-shared-storage
     kubectl delete namespace $namespace
 }
-
+function Find-Connect {
+    # Find the Spark Connect driver pod
+    $pod = kubectl get pod -o json -n $namespace | jq -r '.items[] | select(.metadata.labels.type == ""sparkconnect"") |.metadata.name'
+    Write-Output "sc://$pod.default.pod.cluster.local:15002"
+}
 
 if ($args.Count -gt 0) {
     Invoke-Expression ($args -join " ")

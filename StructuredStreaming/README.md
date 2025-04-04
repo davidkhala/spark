@@ -1,5 +1,5 @@
 # [Spark Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
-
+[in pyspark](https://spark.apache.org/docs/latest/api/python/index.html#index-page-structured-streaming)
 # Streaming dataframe
 
 - Check a dataframe is a streaming dataframe by property `df.isStreaming`
