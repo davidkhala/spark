@@ -7,7 +7,7 @@ register() {
 }
 install() {
   # you need a k8s cluster
-  helm install ilum ilum/ilum -n $namespace --wait --create-namespace
+  helm install ilum ilum/ilum -n $namespace --create-namespace
 }
 setup-sql() {
   # Enable SQL
@@ -24,7 +24,7 @@ setup-lineage() {
   kubectl port-forward svc/ilum-marquez-web 9444:9444
 }
 update() {
-  helm upgrade ilum ilum/ilum -n $namespace --wait $@
+  helm upgrade ilum ilum/ilum -n $namespace $@
 }
 expose() {
   kubectl port-forward svc/ilum-ui 9777:9777 -n $namespace
@@ -34,9 +34,9 @@ open() {
   xdg-open http://localhost:31777
 }
 uninstall() {
-  helm uninstall ilum -n $namespace --wait
   # TODO leakage To be fixed by official
-  kubectl delete pvc gitea-shared-storage -n $namespace
+  # helm uninstall ilum -n $namespace 
+  # kubectl delete pvc gitea-shared-storage -n $namespace
   kubectl delete namespace $namespace
 }
 

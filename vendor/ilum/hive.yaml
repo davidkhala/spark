@@ -1,0 +1,11 @@
+ilum-core:
+  hiveMetastore:
+    enabled: true
+    statusProbe:
+      enabled: true
+  sql:
+    enabled: true
+ilum-hive-metastore:
+  enabled: true
+ilum-sql:
+  enabled: true

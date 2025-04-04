@@ -12,7 +12,7 @@ function Register {
 
 function Install {
     # You need a k8s cluster
-    helm install ilum ilum/ilum --wait -n $namespace --create-namespace
+    helm install ilum ilum/ilum -n $namespace --create-namespace
 }
 
 function Enable-Sql {
@@ -36,7 +36,7 @@ function Update {
     # Use splatting for passing arguments to helm upgrade
     $params = @{}
     
-    helm upgrade ilum ilum/ilum -n $namespace --wait @params
+    helm upgrade ilum ilum/ilum -n $namespace @params
 }
 
 function Expose {
@@ -49,9 +49,9 @@ function Open {
 }
 
 function Uninstall {
-    helm uninstall ilum --ignore-not-found --wait -n $namespace
-    kubectl delete pvc gitea-shared-storage
     # TODO Leakage To be fixed by official
+    # helm uninstall ilum -n $namespace
+    # kubectl delete pvc gitea-shared-storage
     kubectl delete namespace $namespace
 }
 
