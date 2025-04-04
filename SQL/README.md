@@ -1,5 +1,6 @@
 # User Defined Function (UDF)
 - the most useful feature of Spark SQL & DataFrame 
+- > 如果有解决问题的其他方式，就不要创建UDF，因为它们是性能杀手
 - the most expensive operations: use them only you have no choice and when essential
 
 # Syntax
@@ -10,8 +11,21 @@ Insert
 Merge
 - > 在很多情况下，即使只想更新信息，也应使用MERGE而不是UPDATE，因为其运行速度更快，尤其是在所做修改依赖于复杂join时
 
+UNION
+- 在SQL中，union和union all是不同的
+- 但在PySpark Dataframe [API](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.unionAll.html)中，`unionAll() is an alias to union()`，结果与SQL中的union all相同，都不去重
 `ANALYZE TABLE`
 - 手动帮助执行优化器Catalyst获取表的统计信息
+
+NULL value process
+- `df.dropna()`: 删除所有至少有一列为NULL的行
+  - `.dropna('all')`: 只删除全空的行
+  - `.dropna(how='any', subset = ['badQualityColumn'])`: 只删除指定列为NULL的行
+- `df.fillna()`: 将NULL替换为固定值（仅在列类型匹配时才执行替换）
+- Imputer: 拟合插值工具，只能用于double或者float
+  - `from pyspark.ml.feature import Imputer`
+  - default `strategy='mean'` 
+
 # Spark DataFrame
 [wiki](https://github.com/davidkhala/spark/wiki/data-structure)
 
