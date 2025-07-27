@@ -26,3 +26,18 @@ read parquet
 - ```
   SELECT * FROM parquet.`<dir_path>`  
   ```
+
+`PIVOT`: rotates rows into columns.
+- transform data from a long format (rows representing individual measurements) to a wide format (columns representing multiple measurements)
+- effectively reshape a table
+- ```
+  SELECT *
+  FROM (
+    SELECT date, metric_type, value
+    FROM sensor_data
+  ) PIVOT (
+    MAX(value) FOR metric_type IN ('temperature', 'humidity', 'pressure')
+  )
+
+  ```
+- reverse: `UNPIVOT`
