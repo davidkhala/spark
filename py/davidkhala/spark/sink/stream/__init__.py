@@ -2,8 +2,6 @@ from abc import abstractmethod, ABC
 from typing import Callable, Protocol
 
 from pyspark.sql.connect.dataframe import DataFrame
-from pyspark.sql.connect.session import SparkSession
-
 from pyspark.sql.types import Row
 
 
